@@ -10,22 +10,28 @@ body {
   font-family: 'Poppins', sans-serif;
   background: #050816;
   color: white;
-  scroll-behavior: smooth;
 }
 header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 50px;
-  background: rgba(0,0,0,0.7);
+  padding: 20px 40px;
+  background: rgba(0,0,0,0.8);
   position: fixed;
   width: 100%;
   z-index: 1000;
 }
 nav a {
-  margin: 0 15px;
-  text-decoration: none;
+  margin: 0 10px;
   color: #ccc;
   cursor: pointer;
+  text-decoration: none;
+}
+.page {
+  display: none;
+  padding-top: 100px;
+}
+.active {
+  display: block;
 }
 .hero {
   height: 100vh;
@@ -35,24 +41,18 @@ nav a {
   align-items: center;
   text-align: center;
   background: linear-gradient(to right, #001f3f, #0074D9);
+  padding: 20px;
 }
 .hero h2 {
-  font-size: 3.5em;
+  font-size: clamp(1.8em, 5vw, 3em);
   font-family: 'Orbitron';
-}
-.btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #00d4ff;
-  border: none;
-  color: black;
-  cursor: pointer;
-  border-radius: 8px;
+  max-width: 90%;
+  word-break: break-word;
 }
 .section {
-  padding: 100px 50px;
+  padding: 60px 40px;
 }
-.services {
+.services, .projects {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -60,34 +60,21 @@ nav a {
 .card {
   flex: 1;
   min-width: 250px;
-  padding: 25px;
   background: #0f172a;
-  border-radius: 15px;
-  transition: transform 0.3s;
+  padding: 20px;
+  border-radius: 12px;
 }
-.card:hover {
-  transform: translateY(-10px);
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
-.about {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.about img {
-  width: 400px;
-  border-radius: 15px;
-}
-.contact {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-}
-.contact input, .contact textarea {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
+.btn {
+  padding: 10px 20px;
+  background: #00d4ff;
   border: none;
+  cursor: pointer;
+  border-radius: 6px;
 }
 footer {
   text-align: center;
@@ -97,64 +84,76 @@ footer {
 </style>
 </head>
 <body><header>
-<h1>TRIDENT</h1>
+<h2>TRIDENT</h2>
 <nav>
-<a onclick="scrollToSection('home')">Home</a>
-<a onclick="scrollToSection('services')">Services</a>
-<a onclick="scrollToSection('about')">About</a>
-<a onclick="scrollToSection('contact')">Contact</a>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('services')">Services</a>
+<a onclick="showPage('projects')">Projects</a>
+<a onclick="showPage('about')">About</a>
+<a onclick="showPage('contact')">Contact</a>
 </nav>
-</header><section id="home" class="hero">
+</header><!-- HOME --><div id="home" class="page active">
+<section class="hero">
 <h2>A NEW ERA IN TECHNOLOGY</h2>
-<p>Empowering your digital future with cutting-edge innovation, security, and scalable solutions.</p>
-<button class="btn" onclick="scrollToSection('services')">Explore Services</button>
-</section><section id="services" class="section">
+<p>Building powerful, secure and scalable digital solutions for the future.</p>
+<button class="btn" onclick="showPage('services')">Explore</button>
+</section>
+</div><!-- SERVICES --><div id="services" class="page">
+<section class="section">
 <h2>Our Services</h2>
 <div class="services">
-<div class="card" onclick="alert('Software Development Service Clicked')">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f">
 <h3>Software Development</h3>
-<p>Custom-built applications and platforms designed for performance and scalability.</p>
+<p>Modern apps, automation systems and enterprise solutions.</p>
 </div>
-<div class="card" onclick="alert('Cybersecurity Service Clicked')">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
 <h3>Cybersecurity</h3>
-<p>Advanced protection systems to keep your data and infrastructure secure.</p>
+<p>Protecting systems with next-gen security technologies.</p>
 </div>
-<div class="card" onclick="alert('Cloud Services Clicked')">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
 <h3>Cloud Services</h3>
-<p>Flexible and reliable cloud solutions to power modern businesses.</p>
+<p>Reliable and scalable infrastructure for global businesses.</p>
 </div>
 </div>
-</section><section id="about" class="section about">
-<img src="brand.png" alt="Trident Brand">
-<div>
-<h2>About Trident Technologies</h2>
-<p>We are a next-generation technology company focused on delivering powerful digital solutions. From innovative applications to secure infrastructures, we bring ideas to life.</p>
+</section>
+</div><!-- PROJECTS --><div id="projects" class="page">
+<section class="section">
+<h2>Our Projects</h2>
+<div class="projects">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523475496153-3d6cc3000da4">
+<h3>Movie Max</h3>
+<p>A modern movie streaming platform with smart recommendations.</p>
 </div>
-</section><section id="contact" class="section">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1581090700227-1e8a5c5a4c93">
+<h3>VPN Network</h3>
+<p>Secure global VPN infrastructure with subscription model.</p>
+</div>
+</div>
+</section>
+</div><!-- ABOUT --><div id="about" class="page">
+<section class="section">
+<h2>About Us</h2>
+<p>Trident Technologies is a digital innovation company focused on building secure, scalable and intelligent systems across industries.</p>
+</section>
+</div><!-- CONTACT --><div id="contact" class="page">
+<section class="section">
 <h2>Contact Us</h2>
-<div class="contact">
-<input type="text" id="name" placeholder="Your Name">
-<input type="email" id="email" placeholder="Your Email">
-<textarea id="message" placeholder="Your Message"></textarea>
-<button class="btn" onclick="sendMessage()">Send Message</button>
-</div>
-</section><footer>
-<p>© 2026 Trident Technologies. All rights reserved.</p>
+<input placeholder="Name"><br><br>
+<input placeholder="Email"><br><br>
+<textarea placeholder="Message"></textarea><br><br>
+<button class="btn" onclick="alert('Message sent!')">Send</button>
+</section>
+</div><footer>
+<p>© 2026 Trident Technologies</p>
 </footer><script>
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-}
-
-function sendMessage() {
-  let name = document.getElementById('name').value;
-  let email = document.getElementById('email').value;
-  let message = document.getElementById('message').value;
-
-  if(name && email && message) {
-    alert('Message sent successfully!');
-  } else {
-    alert('Please fill in all fields');
-  }
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
 }
 </script></body>
-</html>
+  </html>
